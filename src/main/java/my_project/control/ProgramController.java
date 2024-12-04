@@ -51,6 +51,8 @@ public class ProgramController {
         player01 = new Player(50, Config.WINDOW_HEIGHT-100);
         viewController.draw(player01);
         viewController.register(player01);
+
+
     }
 
     /**
@@ -63,6 +65,7 @@ public class ProgramController {
     }
 
     //TODO 06 Fügen Sie eine Methode checkAndHandleCollision(Apple a) hinzu. Diese gibt true zurück, falls das Apple-Objekt mit dem Player-Objekt kollidiert. Nutzen Sie hierzu die collidesWith-Methode der Klasse GraphicalObject.
+
 
     //TODO 07 Fügen Sie eine Methode checkAndHandleCollision(Pear p) hinzu. Diese gibt true zurück, falls das Pear-Objekt mit dem Player-Objekt kollidiert. Nutzen Sie hierzu die collidesWith-Methode der Klasse GraphicalObject.
 }
