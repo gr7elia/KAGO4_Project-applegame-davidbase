@@ -13,15 +13,22 @@ public class Pear extends GraphicalObject {
         this.y = y;
         speed = 150;
         width = 25;
-        height = 35;
+        height = 50;
     }
 
     @Override
     public void draw(DrawTool drawTool) {
         drawTool.setCurrentColor(0,255,0,255);
-        drawTool.drawFilledRectangle(x,y,width,height);
+        drawTool.drawFilledRectangle(x,y+0.5*height,width,0.5*height);
+        drawTool.drawFilledPolygon(x+0.3*width,y, x,y+0.5*height, x+width,y+0.5*height, (x+width)-0.3*width,y);
+
         drawTool.setCurrentColor(0,0,0,255);
-        drawTool.drawRectangle(x,y,width,height);
+        drawTool.drawLine(x+0.5*width,y,x+0.5*width,y-0.2*height);
+
+        //drawTool.setCurrentColor(0,0,0,255);
+        //drawTool.drawRectangle(x,y+0.5*height,width,0.5*height);
+        //drawTool.drawPolygon(x+0.3*width,y, x,y+0.5*height, x+width,y+0.5*height, (x+width)-0.3*width,y);
+
     }
 
     @Override
