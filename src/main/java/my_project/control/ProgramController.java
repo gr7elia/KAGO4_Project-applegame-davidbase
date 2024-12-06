@@ -1,6 +1,7 @@
 package my_project.control;
 
 import KAGO_framework.control.ViewController;
+import KAGO_framework.model.GraphicalObject;
 import my_project.Config;
 import my_project.model.Apple;
 import my_project.model.Pear;
@@ -10,7 +11,7 @@ import my_project.model.Player;
  * Ein Objekt der Klasse ProgramController dient dazu das Programm zu steuern. Die updateProgram - Methode wird
  * mit jeder Frame im laufenden Programm aufgerufen.
  */
-public class ProgramController {
+public class ProgramController extends GraphicalObject {
 
     //Attribute
 
@@ -65,7 +66,9 @@ public class ProgramController {
     }
 
     //#TODO 06 Fügen Sie eine Methode checkAndHandleCollision(Apple a) hinzu. Diese gibt true zurück, falls das Apple-Objekt mit dem Player-Objekt kollidiert. Nutzen Sie hierzu die collidesWith-Methode der Klasse GraphicalObject.
-
+    public boolean checkAndHandleCollision(Apple a){
+        collidesWith(player01);
+    }
 
     //TODO 07 Fügen Sie eine Methode checkAndHandleCollision(Pear p) hinzu. Diese gibt true zurück, falls das Pear-Objekt mit dem Player-Objekt kollidiert. Nutzen Sie hierzu die collidesWith-Methode der Klasse GraphicalObject.
 }
