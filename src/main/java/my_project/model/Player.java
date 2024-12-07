@@ -33,9 +33,15 @@ public class Player extends InteractiveGraphicalObject {
 
     @Override
     public void draw(DrawTool drawTool) {
-        drawTool.setCurrentColor(157,152,3,255);
+        //drawTool.setCurrentColor(157,152,3,255);
+        drawTool.setCurrentColor(160,117,88,255);
         drawTool.drawFilledRectangle(x,y,width,height);
-        drawTool.setCurrentColor(0,0,0,255);
+
+        drawTool.setLineWidth(4);
+        drawTool.drawLine(x,y, x-0.1*width,y+0.9*height);
+        drawTool.drawLine(x+width,y, x+1.1*width,y+0.9*height);
+
+        drawTool.setCurrentColor(160,117,88,155);
         drawTool.drawRectangle(x,y,width,height);
     }
 
