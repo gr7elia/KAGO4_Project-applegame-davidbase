@@ -2,18 +2,23 @@ package my_project.model;
 
 import KAGO_framework.model.GraphicalObject;
 import KAGO_framework.view.DrawTool;
+import my_project.control.ProgramController;
 
 public class Pear extends GraphicalObject {
 
     //Attribute
     private double speed;
 
-    public Pear(double x, double y){
+    // Referenzen
+    private ProgramController pC;
+
+    public Pear(double x, double y, ProgramController pC){
         this.x = x;
         this.y = y;
         speed = 150;
         width = 35;
         height = 50;
+        this.pC = pC;
     }
 
     @Override
@@ -36,13 +41,14 @@ public class Pear extends GraphicalObject {
     @Override
     public void update(double dt) {
         //TODO 03 Eine Birne soll von oben herab fallen. Sobald sie unten den Bildschirmrand berührt wird die Methode jumpBack() aufgerufen (siehe TODO 04).
-        if (y < 1000){ y += speed*dt; } else {jumpBack();}
+        if (y < 1000){ y += speed*dt; } else {jumpBack(false);}
     }
 
     //TODO 04 Lege eine Methode jumpBack() an, die bei Aufruf das Pear-Objekt oben am oberen Bildschirmrand an einer zufälligen x-Position positioniert.
-    public void jumpBack(){
+    public void jumpBack(boolean collided){
         y = -2*height;
         x = Math.random()*(1000-width);
+        if (! collided){ pC.decreasePoints(); }
     }
 }
 

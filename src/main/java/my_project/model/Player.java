@@ -2,6 +2,7 @@ package my_project.model;
 
 import KAGO_framework.model.InteractiveGraphicalObject;
 import KAGO_framework.view.DrawTool;
+import my_project.control.ProgramController;
 
 import java.awt.event.KeyEvent;
 
@@ -18,8 +19,9 @@ public class Player extends InteractiveGraphicalObject {
     private int direction;
 
     //Referenzen
+    private ProgramController pC;
 
-    public Player(double x, double y){
+    public Player(double x, double y, ProgramController pC){
         this.x = x;
         this.y = y;
         speed = 150;
@@ -29,6 +31,8 @@ public class Player extends InteractiveGraphicalObject {
         this.keyToGoLeft    = KeyEvent.VK_A;
         this.keyToGoRight   = KeyEvent.VK_D;
         this.direction      = -1; //-1 keine Bewegung, 0 nach rechts, 2 nach links
+
+        this.pC = pC;
     }
 
     @Override
@@ -43,6 +47,14 @@ public class Player extends InteractiveGraphicalObject {
 
         drawTool.setCurrentColor(160,117,88,155);
         drawTool.drawRectangle(x,y,width,height);
+
+        if ( pC.getState() == 1 ){
+            drawTool.drawText(20,40, String.valueOf( pC.getPoints() ) );
+        } else if ( pC.getState() == 2){
+            drawTool.drawText(20,40, "YOU WIN :)");
+        } else if ( pC.getState() == 0){
+            drawTool.drawText(20,40, "YOU LOOSE :(");
+        }
     }
 
     @Override
