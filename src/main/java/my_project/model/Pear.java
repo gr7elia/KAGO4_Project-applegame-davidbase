@@ -10,15 +10,17 @@ public class Pear extends GraphicalObject {
     private double speed;
 
     // Referenzen
-    private ProgramController pC;
+    private Player player01;
+    private ProgramController pc;
 
-    public Pear(double x, double y, ProgramController pC){
+    public Pear(double x, double y, Player player01, ProgramController pc){
         this.x = x;
         this.y = y;
         speed = 150;
         width = 35;
         height = 50;
-        this.pC = pC;
+        this.player01 = player01;
+        this.pc = pc;
     }
 
     @Override
@@ -42,13 +44,25 @@ public class Pear extends GraphicalObject {
     public void update(double dt) {
         //TODO 03 Eine Birne soll von oben herab fallen. Sobald sie unten den Bildschirmrand berührt wird die Methode jumpBack() aufgerufen (siehe TODO 04).
         if (y < 1000){ y += speed*dt; } else {jumpBack(false);}
+        if (checkAndHandleCollision(player01)) {jumpBack(true);}
+    }
+
+    //TODO 07 Fügen Sie eine Methode checkAndHandleCollision(Pear p) hinzu. Diese gibt true zurück, falls das Pear-Objekt mit dem Player-Objekt kollidiert. Nutzen Sie hierzu die collidesWith-Methode der Klasse GraphicalObject.
+    public boolean checkAndHandleCollision(Player p){
+        if (p.collidesWith(p)){
+            return true;
+        }
+        return false;
     }
 
     //TODO 04 Lege eine Methode jumpBack() an, die bei Aufruf das Pear-Objekt oben am oberen Bildschirmrand an einer zufälligen x-Position positioniert.
     public void jumpBack(boolean collided){
         y = -2*height;
         x = Math.random()*(1000-width);
-        if (! collided){ pC.decreasePoints(); }
+        //if (! collided){ pC.decreasePoints(); }
     }
+
+    public double getY(){return y;}
+    public double getHeight(){return height;}
 }
 

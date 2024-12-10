@@ -11,7 +11,7 @@ public class Player extends InteractiveGraphicalObject {
 
     //Attribute
     private double speed;
-    private int points;
+    private int points = 9;
 
     //Tastennummern zur Steuerung
     private int keyToGoLeft;
@@ -19,9 +19,10 @@ public class Player extends InteractiveGraphicalObject {
     private int direction;
 
     //Referenzen
-    private ProgramController pC;
+    private Apple apple01;
+    private Pear pear01;
 
-    public Player(double x, double y, ProgramController pC){
+    public Player(double x, double y, Apple apple01, Pear pear01){
         this.x = x;
         this.y = y;
         speed = 150;
@@ -32,7 +33,8 @@ public class Player extends InteractiveGraphicalObject {
         this.keyToGoRight   = KeyEvent.VK_D;
         this.direction      = -1; //-1 keine Bewegung, 0 nach rechts, 2 nach links
 
-        this.pC = pC;
+        this.apple01 = apple01;
+        this.pear01 = pear01;
     }
 
     @Override
@@ -47,14 +49,6 @@ public class Player extends InteractiveGraphicalObject {
 
         drawTool.setCurrentColor(160,117,88,155);
         drawTool.drawRectangle(x,y,width,height);
-
-        if ( pC.getState() == 1 ){
-            drawTool.drawText(20,40, String.valueOf( pC.getPoints() ) );
-        } else if ( pC.getState() == 2){
-            drawTool.drawText(20,40, "YOU WIN :)");
-        } else if ( pC.getState() == 0){
-            drawTool.drawText(20,40, "YOU LOOSE :(");
-        }
     }
 
     @Override
@@ -66,7 +60,24 @@ public class Player extends InteractiveGraphicalObject {
         if(direction == 2){
             if (x >= 0){x = x - speed*dt;}
         }
+        checkApplesPosition(apple01);
+        checkPearsPosition(pear01);
+    }
 
+    public void checkApplesPosition(Apple a){
+        if (a.getY()+a.getApplesRadius() > (1029 - height) && a.getY()-a.getApplesRadius() < (1029)){
+            if (collidesWith(a)){ points+=1; }
+        } else if (a.getY() - a.getApplesRadius() > 1030 ){
+            points -= 1;
+        }
+    }
+
+    public void checkPearsPosition(Pear p){
+        if (p.getY()+p.getHeight() > (1029 - height) && p.getY() < (1029)){
+            if (collidesWith(p)){ points+=1; }
+        } else if (p.getY() > 1030){
+            points -= 1;
+        }
     }
 
     @Override
@@ -88,4 +99,6 @@ public class Player extends InteractiveGraphicalObject {
             direction = -1;
         }
     }
+
+    public int getPoints(){return points;}
 }
