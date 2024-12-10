@@ -41,24 +41,15 @@ public class Apple extends GraphicalObject {
     public void update(double dt) {
         //TODO 01 Ein Apfel soll von oben herab fallen. Sobald er unten den Bildschirmrand berührt wird die Methode jumpBack() aufgerufen (siehe TODO 02).
 
-        if (y < 1000) {y += speed*dt;} else {jumpBack(false);}
-        if (checkAndHandleCollision(player01)) {jumpBack(true);}
-    }
-
-    //#TODO 06 Fügen Sie eine Methode checkAndHandleCollision(Apple a) hinzu. Diese gibt true zurück, falls das Apple-Objekt mit dem Player-Objekt kollidiert. Nutzen Sie hierzu die collidesWith-Methode der Klasse GraphicalObject.
-    public boolean checkAndHandleCollision(Player p){
-        if (collidesWith(p)){
-            return true;
-        }
-        return false;
+        if (y-radius < 1000) {y += speed*dt;} else {jumpBack(); player01.decreasePoints(1);}
+        //if (checkAndHandleCollision(player01)) {jumpBack();}
     }
 
     //TODO 02 Lege eine Methode jumpBack() an, die bei Aufruf das Apple-Objekt oben am oberen Bildschirmrand an einer zufälligen x-Position positioniert.
 
-    public void jumpBack(boolean collided){
+    public void jumpBack(){
         y = -2*radius;
         x = radius + Math.random()*(1000-radius);
-        //if (! collided){ pC.decreasePoints(); }
     }
 
     public double getY(){return y;}

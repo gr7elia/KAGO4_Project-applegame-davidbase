@@ -22,7 +22,7 @@ public class Player extends InteractiveGraphicalObject {
     private Apple apple01;
     private Pear pear01;
 
-    public Player(double x, double y, Apple apple01, Pear pear01){
+    public Player(double x, double y){
         this.x = x;
         this.y = y;
         speed = 150;
@@ -32,9 +32,6 @@ public class Player extends InteractiveGraphicalObject {
         this.keyToGoLeft    = KeyEvent.VK_A;
         this.keyToGoRight   = KeyEvent.VK_D;
         this.direction      = -1; //-1 keine Bewegung, 0 nach rechts, 2 nach links
-
-        this.apple01 = apple01;
-        this.pear01 = pear01;
     }
 
     @Override
@@ -49,6 +46,16 @@ public class Player extends InteractiveGraphicalObject {
 
         drawTool.setCurrentColor(160,117,88,155);
         drawTool.drawRectangle(x,y,width,height);
+
+        drawTool.setCurrentColor(0,0,0,255);
+        if ( points > 0 && points < 10 ){
+            drawTool.drawText(20,40, String.valueOf(points) );
+        } else if (points > 9){
+            drawTool.drawText(20,40, "YOU WIN :)");
+        } else if (points < 0){
+            drawTool.drawText(20,40, "YOU LOOSE :(");
+        }
+
     }
 
     @Override
@@ -60,24 +67,12 @@ public class Player extends InteractiveGraphicalObject {
         if(direction == 2){
             if (x >= 0){x = x - speed*dt;}
         }
-        checkApplesPosition(apple01);
-        checkPearsPosition(pear01);
-    }
 
-    public void checkApplesPosition(Apple a){
-        if (a.getY()+a.getApplesRadius() > (1029 - height) && a.getY()-a.getApplesRadius() < (1029)){
-            if (collidesWith(a)){ points+=1; }
-        } else if (a.getY() - a.getApplesRadius() > 1030 ){
-            points -= 1;
-        }
-    }
+        //TODO 08 Nachdem Sie die TODOs 01-07 erledigt haben: Setzen Sie um, dass im Falle einer Kollision (siehe TODO 06 bzw. 07) zwischen dem Spieler und dem Apfel bzw. dem Spieler und der Birne, die jumpBack()-Methode von dem Apfel bzw. der Birne aufgerufen wird.
 
-    public void checkPearsPosition(Pear p){
-        if (p.getY()+p.getHeight() > (1029 - height) && p.getY() < (1029)){
-            if (collidesWith(p)){ points+=1; }
-        } else if (p.getY() > 1030){
-            points -= 1;
-        }
+
+        if (checkAndHandleCollision(apple01)){points++; apple01.jumpBack();}
+        if (checkAndHandleCollision(pear01)){points++; pear01.jumpBack();}
     }
 
     @Override
@@ -101,4 +96,27 @@ public class Player extends InteractiveGraphicalObject {
     }
 
     public int getPoints(){return points;}
+    public void decreasePoints(int amount){points -= amount;}
+    public void befriendApple(Apple a){
+        this.apple01 = a;
+    }
+    public void befriendPear(Pear p){
+        this.pear01 = p;
+    }
+
+    //#TODO 06 Fügen Sie eine Methode checkAndHandleCollision(Apple a) hinzu. Diese gibt true zurück, falls das Apple-Objekt mit dem Player-Objekt kollidiert. Nutzen Sie hierzu die collidesWith-Methode der Klasse GraphicalObject.
+    //TODO 07 Fügen Sie eine Methode checkAndHandleCollision(Pear p) hinzu. Diese gibt true zurück, falls das Pear-Objekt mit dem Player-Objekt kollidiert. Nutzen Sie hierzu die collidesWith-Methode der Klasse GraphicalObject.
+
+    public boolean checkAndHandleCollision(Apple a){
+        if (collidesWith(a)){
+            return true;
+        }
+        return false;
+    }
+    public boolean checkAndHandleCollision(Pear p){
+        if (collidesWith(p)){
+            return true;
+        }
+        return false;
+    }
 }
