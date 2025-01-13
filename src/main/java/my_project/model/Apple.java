@@ -22,11 +22,13 @@ public class Apple extends GraphicalObject {
         radius = 30;
         this.player01 = player01;
         this.pc = pc;
+        this.setNewImage("src/main/resources/graphic/danawhite.png");
     }
 
     @Override
     public void draw(DrawTool drawTool) {
-        drawTool.setCurrentColor(255,0,0,255);
+        drawTool.drawImage(this.getMyImage(),x,y);
+        /*drawTool.setCurrentColor(255,0,0,255);
         drawTool.drawFilledCircle(x,y,radius);
         drawTool.setCurrentColor(0,0,0,255);
         drawTool.drawCircle(x,y,radius);
@@ -34,7 +36,7 @@ public class Apple extends GraphicalObject {
         drawTool.setLineWidth(3);
         drawTool.drawLine(x,y-radius, x,y-1.3*radius);
         drawTool.setCurrentColor(0,255,0,255);
-        drawTool.drawFilledPolygon(x,y-radius, x+0.2*radius,y-1.4*radius, x+0.6*radius,y-1.5*radius, x+0.8*radius,y-1.4*radius);
+        drawTool.drawFilledPolygon(x,y-radius, x+0.2*radius,y-1.4*radius, x+0.6*radius,y-1.5*radius, x+0.8*radius,y-1.4*radius);*/
     }
 
     @Override
