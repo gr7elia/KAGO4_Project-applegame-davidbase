@@ -22,7 +22,7 @@ public class Ananas extends GraphicalObject {
         radius = 30;
         this.player01 = player01;
         this.pc = pc;
-        this.setNewImage("src/main/resources/graphic/danawhite.png");
+        this.setNewImage("src/main/resources/graphic/islammakhachev.png");
     }
 
     @Override

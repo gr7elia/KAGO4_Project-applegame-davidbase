@@ -21,7 +21,7 @@ public class Banana extends GraphicalObject {
         height = 50;
         this.player01 = player01;
         this.pc = pc;
-        this.setNewImage("src/main/resources/graphic/jonjones.png");
+        this.setNewImage("src/main/resources/graphic/alexpereira.png");
     }
 
     @Override
