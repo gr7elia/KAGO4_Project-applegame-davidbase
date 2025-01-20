@@ -4,7 +4,7 @@ import KAGO_framework.model.GraphicalObject;
 import KAGO_framework.view.DrawTool;
 import my_project.control.ProgramController;
 
-public class Pear extends GraphicalObject {
+public class Pear extends Fruit {
 
     //Attribute
     private double speed;

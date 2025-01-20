@@ -6,7 +6,7 @@ import my_project.control.ProgramController;
 
 import java.awt.*;
 
-public class Apple extends GraphicalObject {
+public class Apple extends Fruit {
 
     //Attribute
     private double speed;
