@@ -14,9 +14,6 @@ public class Pear extends Fruit {
     private ProgramController pc;
 
     public Pear(double x, double y, Player player01, ProgramController pc){
-        this.x = x;
-        this.y = y;
-        speed = 150;
         width = 35;
         height = 50;
         this.player01 = player01;
@@ -43,20 +40,10 @@ public class Pear extends Fruit {
 
     }
 
-    @Override
-    public void update(double dt) {
-        //TODO 03 Eine Birne soll von oben herab fallen. Sobald sie unten den Bildschirmrand berührt wird die Methode jumpBack() aufgerufen (siehe TODO 04).
-        if (y < 1000){ y += speed*dt; } else {jumpBack(); player01.decreasePoints(1);}
-        //if (checkAndHandleCollision(player01)) {jumpBack();}
-    }
 
     //TODO 04 Lege eine Methode jumpBack() an, die bei Aufruf das Pear-Objekt oben am oberen Bildschirmrand an einer zufälligen x-Position positioniert.
-    public void jumpBack(){
-        y = -2*height;
-        x = Math.random()*(1000-width);
-    }
 
-    public double getY(){return y;}
+
     public double getHeight(){return height;}
 }
 

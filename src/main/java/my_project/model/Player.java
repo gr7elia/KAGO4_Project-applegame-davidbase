@@ -25,7 +25,7 @@ public class Player extends InteractiveGraphicalObject {
     public Player(double x, double y){
         this.x = x;
         this.y = y;
-        speed = 150;
+        speed = 300;
         width = 80;
         height = 40;
 

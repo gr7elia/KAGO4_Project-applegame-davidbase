@@ -16,9 +16,7 @@ public class Apple extends Fruit {
     private ProgramController pc;
 
     public Apple(double x, double y, Player player01, ProgramController pc){
-        this.x = x;
-        this.y = y;
-        speed = 150;
+        super();
         radius = 30;
         this.player01 = player01;
         this.pc = pc;
@@ -39,21 +37,9 @@ public class Apple extends Fruit {
         drawTool.drawFilledPolygon(x,y-radius, x+0.2*radius,y-1.4*radius, x+0.6*radius,y-1.5*radius, x+0.8*radius,y-1.4*radius);*/
     }
 
-    @Override
-    public void update(double dt) {
-        //TODO 01 Ein Apfel soll von oben herab fallen. Sobald er unten den Bildschirmrand berührt wird die Methode jumpBack() aufgerufen (siehe TODO 02).
-
-        if (y-radius < 1000) {y += speed*dt;} else {jumpBack(); player01.decreasePoints(1);}
-        //if (checkAndHandleCollision(player01)) {jumpBack();}
-    }
-
     //TODO 02 Lege eine Methode jumpBack() an, die bei Aufruf das Apple-Objekt oben am oberen Bildschirmrand an einer zufälligen x-Position positioniert.
 
-    public void jumpBack(){
-        y = -2*radius;
-        x = radius + Math.random()*(1000-radius);
-    }
 
-    public double getY(){return y;}
+
     public double getApplesRadius(){return radius;}
 }

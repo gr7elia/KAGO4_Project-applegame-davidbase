@@ -24,15 +24,12 @@ public class Background extends GraphicalObject {
 
     public Background(){
         chosenPhrase = phrases[(int)(Math.random()*phrases.length)];
+        this.setNewImage("src/main/resources/graphic/oktagon.png");
     }
 
     @Override
     public void draw(DrawTool drawTool) {
-        drawTool.setCurrentColor(25,100,0,255);
-        drawTool.drawFilledRectangle(0,0,1600,1024);
-        drawTool.setCurrentColor(0,0,0,255);
-        drawTool.formatText("Arial",1,25);
-        drawTool.drawText(450,50,chosenPhrase);
+        drawTool.drawImage(this.getMyImage(),x,y);
     }
 
     @Override

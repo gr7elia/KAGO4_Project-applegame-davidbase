@@ -2,10 +2,7 @@ package my_project.control;
 
 import KAGO_framework.control.ViewController;
 import my_project.Config;
-import my_project.model.Apple;
-import my_project.model.Background;
-import my_project.model.Pear;
-import my_project.model.Player;
+import my_project.model.*;
 
 /**
  * Ein Objekt der Klasse ProgramController dient dazu das Programm zu steuern. Die updateProgram - Methode wird
@@ -20,6 +17,8 @@ public class ProgramController{
 
     private Apple apple01;
     private Pear pear01;
+    private Ananas ananas01;
+    private Banana banana01;
     private Player player01;
     private Background background;
 
@@ -39,7 +38,8 @@ public class ProgramController{
      * Sie erstellt die leeren Datenstrukturen, zu Beginn nur eine Queue
      */
     public void startProgram() {
-
+        background = new Background();
+        viewController.draw(background);
         player01 = new Player(50, Config.WINDOW_HEIGHT-100);
         viewController.draw(player01);
         viewController.register(player01);
@@ -53,6 +53,12 @@ public class ProgramController{
         yPos = Math.random()*(Config.WINDOW_HEIGHT-50) + 50;
         pear01 = new Pear(xPos, yPos, player01, this);
         viewController.draw(pear01);
+
+        ananas01 = new Ananas(xPos, yPos, player01, this);
+        viewController.draw(ananas01);
+
+        banana01 = new Banana(xPos, yPos, player01, this);
+        viewController.draw(banana01);
 
         player01.befriendApple(apple01);
         player01.befriendPear(pear01);
